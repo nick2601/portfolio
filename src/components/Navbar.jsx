@@ -1,17 +1,22 @@
-import React from 'react';
+import { Link } from 'react-router-dom';
 
-export default function Navbar() {
+function Navbar() {
     return (
-        <nav className="bg-gray-800 text-white fixed w-full z-10">
-            <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-                <h1 className="text-2xl font-bold">Nikhil Mule</h1>
-                <ul className="flex space-x-4">
-                    <li><a href="#about" className="hover:text-teal-400">About</a></li>
-                    <li><a href="#skills" className="hover:text-teal-400">Skills</a></li>
-                    <li><a href="#projects" className="hover:text-teal-400">Projects</a></li>
-                    <li><a href="#contact" className="hover:text-teal-400">Contact</a></li>
-                </ul>
+        <nav className="navbar">
+            <div className="nav-brand">
+                <Link to="/">Nikhil Mule</Link>
+            </div>
+            <div className="nav-links">
+                <Link to="/">Home</Link>
+                <Link to="/about">About</Link>
+                <Link to="/experience">Experience</Link>
+                <Link to="/skills">Skills</Link>
+                <Link to="/education">Education</Link>
+                <Link to="/projects">Projects</Link>
+                <Link to="/contact">Contact</Link>
             </div>
         </nav>
     );
 }
+
+export default Navbar;

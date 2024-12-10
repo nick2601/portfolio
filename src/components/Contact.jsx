@@ -5,6 +5,8 @@ const Contact = () => {
     <div className="text-center">
       <h2 className="text-3xl font-extrabold text-gray-900">Contact Me</h2>
       <p className="mt-4 text-lg text-gray-500">
+        NIKHIL MULE<br />
+        SOFTWARE ENGINEER<br />
         23 Page Street Swansea SA1 4EY UK
       </p>
       <p className="text-lg text-gray-500">
