@@ -21,9 +21,9 @@ const Hero = () => {
           </div>
           <div className="mt-10">
             <img 
-              src="https://via.placeholder.com/600x400" 
-              alt="Placeholder" 
-              className="mx-auto rounded-lg shadow-lg"
+              src="/images/sasuke_placeholder.png" 
+              alt="Sasuke Placeholder" 
+              className="mx-auto rounded-lg shadow-lg w-full max-w-md"
             />
           </div>
         </div>

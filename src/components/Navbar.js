@@ -3,6 +3,15 @@ import React, { useState, useEffect } from 'react';
 const Navbar = () => {
   const [activeSection, setActiveSection] = useState('');
 
+  const debounce = (func, wait) => {
+    let timeout;
+    return function(...args) {
+      const context = this;
+      clearTimeout(timeout);
+      timeout = setTimeout(() => func.apply(context, args), wait);
+    };
+  };
+
   useEffect(() => {
     const handleScroll = () => {
       const sections = ['hero', 'about', 'projects', 'contact'];
@@ -20,8 +29,10 @@ const Navbar = () => {
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    const debouncedHandleScroll = debounce(handleScroll, 100);
+
+    window.addEventListener('scroll', debouncedHandleScroll);
+    return () => window.removeEventListener('scroll', debouncedHandleScroll);
   }, []);
 
   const scrollToSection = (sectionId) => {
@@ -29,6 +40,11 @@ const Navbar = () => {
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
+  };
+
+  const handleNavClick = (sectionId) => {
+    setActiveSection(sectionId);
+    scrollToSection(sectionId);
   };
 
   const navItems = [
@@ -44,7 +60,7 @@ const Navbar = () => {
           <div className="flex space-x-7">
             <div className="flex items-center py-4">
               <span 
-                onClick={() => scrollToSection('hero')}
+                onClick={() => handleNavClick('hero')}
                 className="font-semibold text-gray-500 text-lg cursor-pointer hover:text-gray-900"
               >
                 Portfolio
@@ -56,7 +72,7 @@ const Navbar = () => {
               {navItems.map(item => (
                 <button
                   key={item.id}
-                  onClick={() => scrollToSection(item.id)}
+                  onClick={() => handleNavClick(item.id)}
                   className={`py-4 px-2 transition-colors duration-300 ${
                     activeSection === item.id
                       ? 'text-blue-500 border-b-2 border-blue-500'
@@ -68,7 +84,7 @@ const Navbar = () => {
               ))}
             </div>
             <button
-              onClick={() => scrollToSection('contact')}
+              onClick={() => handleNavClick('contact')}
               className={`ml-4 px-4 py-2 rounded-full transition-all duration-300 ${
                 activeSection === 'contact'
                 ? 'bg-blue-600 text-white'
